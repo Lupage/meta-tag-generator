@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 from classes import Page
 from dfseo import RestClient
 import base64

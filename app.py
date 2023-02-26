@@ -2,7 +2,6 @@ from classes import Page
 from dfseo import RestClient
 import base64
 import pandas as pd
-import requests
 import streamlit as st
 
 def generate_meta_tags(url_argument, username, password):

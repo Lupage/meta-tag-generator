@@ -4,6 +4,7 @@ import base64
 import pandas as pd
 import streamlit as st
 
+# Main function to generate tags
 def generate_meta_tags(url_argument, username, password):
     content = Page(url_argument).content()
     client = RestClient(username, password)
@@ -17,6 +18,7 @@ def generate_meta_tags(url_argument, username, password):
     description = response["tasks"][0]["result"][0]["description"]
     return url_argument, title, len(title), description, len(description)
 
+#Streamlit front-end
 st.set_page_config(layout="wide", page_title="Description Generator")
 with st.form(key='Meta Tag Bulk Generator'):
     col1, col2 = st.columns(2)
@@ -35,6 +37,7 @@ data_for_dataframe = []
 count = 0
 my_bar = st.progress(count)
 
+#Streamlit run function and dataframe
 if submit_button:    
     if len(url_input) > 500:
         st.warning("Enter up to 500 URLs only")

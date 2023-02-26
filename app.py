@@ -11,8 +11,8 @@ def generate_meta_tags(url_argument, username, password):
     post_data[len(post_data)] = dict(
         text=content[0:1800],
         creativity=0.9)
-#     response = client.post("https://sandbox.dataforseo.com/v3/content_generation/generate_meta_tags/live", post_data)
-    response = client.post("/v3/content_generation/generate_meta_tags/live", post_data)
+    response = client.post("https://sandbox.dataforseo.com/v3/content_generation/generate_meta_tags/live", post_data)
+    # response = client.post("/v3/content_generation/generate_meta_tags/live", post_data)
     title = response["tasks"][0]["result"][0]["title"]
     description = response["tasks"][0]["result"][0]["description"]
     return url_argument, title, len(title), description, len(description)
@@ -26,9 +26,9 @@ with st.form(key='Meta Tag Bulk Generator'):
         url_input = url_input.split()
     with col2:
         st.header("An App by Francis Angelo Reyes of [Lupage Digital](https://www.lupagedigital.com/?utm_source=streamlit&utm_medium=referral&utm_campaign=metatag)")
-        api_username = st.text_input("Enter API username here", placeholder="yourcredentials@email.com")
-        api_password = st.text_input("Enter API password here",placeholder="1234xx5x6xxx7x80")
-        st.markdown("Get your API credentials from [DataForSEO](https://dataforseo.com/?aff=124940). You can find the credentials under the navgitation bar: API Settings > API access.")
+        api_username = st.text_input("Enter API username", placeholder="yourcredentials@email.com")
+        api_password = st.text_input("Enter API password",placeholder="1234xx5x6xxx7x80")
+        st.markdown("Get your API credentials from [DataForSEO](https://dataforseo.com/?aff=124940).\n You can find the credentials under the navgitation bar: API Settings > API access.")
     submit_button = st.form_submit_button(label='Generate Meta Tags')
 
 data_for_dataframe = []
@@ -50,6 +50,6 @@ if submit_button:
     st.table(df)
     csv = df.to_csv()
     b64 = base64.b64encode(csv.encode()).decode()
-    st.markdown('### **⬇️ Download output CSV File **')
-    href = f"""(Don't left-click. Instead, right-click, select "Save link as...", then save as "download.csv".) <a href="data:file/csv;base64,{b64}">Download CSV File</a> """
+    st.markdown('### ⬇️ Download output CSV File')
+    href = f"""(Don't left-click. Instead, right-click, select "Save link as...", then save as "download.csv".) <a href="data:file/csv;base64,{b64}">\n\nDownload CSV File</a> """
     st.markdown(href, unsafe_allow_html=True)

@@ -10,9 +10,10 @@ def generate_meta_tags(url_argument, username, password):
     client = RestClient(username, password)
     post_data = dict()
     post_data[len(post_data)] = dict(
-        text=content[0:1800],
+        text=content[0:1500],
         creativity=0.9)
-    response = client.post("/v3/content_generation/generate_meta_tags/live", post_data)
+    response = client.post("https://sandbox.dataforseo.com/v3/content_generation/generate_meta_tags/live", post_data)
+    # response = client.post("/v3/content_generation/generate_meta_tags/live", post_data)
     title = response["tasks"][0]["result"][0]["title"]
     description = response["tasks"][0]["result"][0]["description"]
     return url_argument, title, len(title), description, len(description)
@@ -29,7 +30,7 @@ with st.form(key='Meta Tag Bulk Generator'):
         st.header("An App by Francis Angelo Reyes of [Lupage Digital](https://www.lupagedigital.com/?utm_source=streamlit&utm_medium=referral&utm_campaign=metatag)")
         api_username = st.text_input("Enter API username", placeholder="yourcredentials@email.com")
         api_password = st.text_input("Enter API password",placeholder="1234xx5x6xxx7x80")
-        st.markdown("Get your API credentials from [DataForSEO](https://dataforseo.com/?aff=124940).\n You can find the credentials under the navgitation bar: API Settings > API access.")
+        st.markdown("Get your API credentials from [DataForSEO](https://dataforseo.com/?aff=124940).\n\n You can find the credentials under the navgitation bar: API Settings > API access.")
     submit_button = st.form_submit_button(label='Generate Meta Tags')
 
 data_for_dataframe = []

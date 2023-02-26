@@ -12,8 +12,7 @@ def generate_meta_tags(url_argument, username, password):
     post_data[len(post_data)] = dict(
         text=content[0:1800],
         creativity=0.9)
-    response = client.post("https://sandbox.dataforseo.com/v3/content_generation/generate_meta_tags/live", post_data)
-    # response = client.post("/v3/content_generation/generate_meta_tags/live", post_data)
+    response = client.post("/v3/content_generation/generate_meta_tags/live", post_data)
     title = response["tasks"][0]["result"][0]["title"]
     description = response["tasks"][0]["result"][0]["description"]
     return url_argument, title, len(title), description, len(description)
